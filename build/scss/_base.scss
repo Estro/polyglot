@@ -1,0 +1,84 @@
+::-webkit-input-placeholder {  @include rem('font-size', 12px); }
+:-moz-placeholder /* Firefox 18- */ {  @include rem('font-size', 12px); }
+::-moz-placeholder /* Firefox 19+ */ {  @include rem('font-size', 12px); }
+:-ms-input-placeholder {  @include rem('font-size', 12px); }
+
+html, body{
+	font-size: $base-font-size;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
+
+img { max-width: 100%; }
+a:hover { text-decoration: none; }
+p { margin: 10px 0; }
+p:first-child { margin-top: 0 }
+
+input[type="text"], input[type="password"]{
+	border: 1px solid $gray-light;
+	box-shadow: none;
+}
+
+.page-wrapper{
+	width: 100%;
+	overflow:hidden;
+}
+
+.btn-empty, .selectpicker {
+  background: transparent;
+  color: $gray-dark;
+  border-color: $qa-primary;
+  outline: none;
+
+  &:hover, &:focus {
+    background: transparent;
+    color: black;
+    outline: none;
+  }
+}
+
+
+.page-content ul.large, .page-content.static-page ul {
+  li {
+    font-size: 15px;
+    margin-top: 2px;
+  }
+}
+
+ol.multi-level, .multi-level ol:not(.reset)  {
+  counter-reset: section;
+  list-style-type: none;
+  margin-right: 30px;
+
+  & > li:before {
+    counter-increment: section;
+    content: counters(section, ".") ". ";
+  }
+
+  li {
+    font-size: 15px;
+    margin-top: 2px;
+  }
+}
+
+footer {
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+ul.circle-hidden {
+  .actions {
+    display: none;
+  }
+}
+
+a:focus, a:active,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+  outline : 0 !important;
+}

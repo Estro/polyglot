@@ -1,0 +1,76 @@
+/*!
+Project Name: Q&A Spot
+Project Url: http://...
+Author: dmbrowne @itsdarylbrowne & MPomeroy @...i
+Text Domain: qaspot
+*/
+
+
+/* ===============================
+ * === Settings and mixins  ===
+ * ============================ */
+  @import "compass/utilities/sprites";         // Compass helper for using separate imgs as sprites
+
+  @import "defaults/variables";
+  @import "defaults/helpers";                  // Sass mixins for breakpoints as well as clearfix and hide-text mixins
+  @import "defaults/mixins";                   // Stylistic mixins (buttons, arrows etc)
+  @import "defaults/icons";
+  @import "defaults/fonts";
+
+  @import "vendor/pace";
+  @import "vendor/animate";
+  @import "vendor/select";
+  @import "vendor/select2";
+  @import "vendor/fancybox";
+  @import "vendor/cropbox";
+
+/* ===============================
+ * === Grid - bootstrap grids ===
+ * ============================ */
+  @import "vendor/bootstrap/variables";         // Used to override bootstrap defaults
+  @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+
+  @import "compass/css3";                     // Placed here after bootstrap rather than in the 'setting & mixins' section because
+                                              // bootstrap import it's own mixins for transforms & transitions that would
+                                              // overwrite compass' if compass is included before bootstrap
+
+/* ===============================
+ * === Normalize  ===
+ * ============================ */
+  @import "defaults/normalize";               // this uses a mixin, so it needs to be initialised after 'settings and mixins'
+
+
+/* ===============================
+ * === Project styles  ===
+ * ============================ */
+  // Site specific files go here
+  @import "defaults/buttons";
+  @import "partials/common";
+  @import "partials/video-carousel";
+
+	// base
+	@import "defaults/typography";
+  @import "defaults/parallax";
+	@import "base";
+
+	// header, footer, and other common areas
+	@import "partials/header";
+	//@import "partials/footer";
+
+	// page specifics
+  @import "partials/404";
+  @import "partials/home";
+  @import "partials/recorder";
+  @import "partials/campaigns";
+  @import "partials/material";
+  @import "partials/advertising";
+  @import "partials/explore";
+  @import "partials/profile";
+  @import "partials/create-campaign";
+  @import "partials/login";
+  @import "partials/subnav";
+  @import "partials/manage-users";
+  @import "partials/sort-questions";
+  @import "partials/pricing";
+  @import "partials/notifications";

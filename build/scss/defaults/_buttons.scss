@@ -1,0 +1,34 @@
+a.btn{
+	max-width: 100%;
+	word-wrap: normal;
+
+	&.btn-lg{
+		@include custom-breakpoint('(max-width: 767px)'){
+			padding: 6px 12px;
+			@include rem('font-size', 14px);
+		}
+		@include rem('font-size', 14px);
+	}
+
+	&:hover{
+		@include transition(background-color 0.3s ease-out);
+	}
+}
+
+.btn-second {
+  @include button-variant(#fff,  #e1784f,  #e1784f);
+}
+
+$colors: $btn-primary-bg, $btn-success-bg, $btn-info-bg, $btn-default-bg, $btn-warning-bg, $btn-danger-bg;
+$classes: bg-primary, bg-success, bg-info, bg-default, bg-warning, bg-danger;
+$i: 0;
+
+@for $i from 1 through length($colors){
+	$bgcolor: nth($colors, $i);
+	$bgclass: nth($classes, $i);
+
+	.input-group-addon.#{$bgclass}{
+		background: $bgcolor;
+		color: #fff;
+	}
+}

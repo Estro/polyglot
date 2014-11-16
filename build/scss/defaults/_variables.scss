@@ -1,0 +1,39 @@
+// COLORS
+// -------------------------------------------------------
+
+$text:#181818;
+$text-white:#FFF;
+$header-green:#0D8F52;
+$footer-text:#fff;
+
+$disabled:#cccccc; // gray color used on disabled buttons
+
+$qa-primary:#e1784f; // QA orange
+$qa-secondary: #5ea6b9; // QA turquiose #e1784f
+$btn-default-colour: #38a6a6; //lighter version QA turqiouse
+$bg-light: #ebeeef;  // offwhite colur used to break up bckgd sections
+$input-bg: #f0f3f4; // bckgd colur used for ask question input
+$disclaimer-msg-bg: #f9fbfc;  // backgrd colour used in disclaimer messages e.g. remaining session days
+$red: #BD0000;
+
+// FONTS
+// -------------------------------------------------------
+$baseline:24px;
+
+$base-font-size:12px; // Used for REM mixin
+$font-helvetica:Helvetica, Arial, sans-serif;
+
+// BREAKPOINTS / doubles as container sizes
+// -------------------------------------------------------
+
+$breakpoints: (
+	'mobile' 480px,
+	'tablet' 768px,
+	'desktop' 992px,
+	'desktop-large' 1200px
+);
+
+// Minor breakpoints
+
+// MISC
+// -------------------------------------------------------

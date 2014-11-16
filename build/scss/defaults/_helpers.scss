@@ -1,0 +1,156 @@
+// MIXINS
+// ===================================================================================
+
+// HIDDEN CLASSES
+// -------------------------------------------------------
+%hide-text {
+	display:block;
+	text-indent:100%;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+%clearfix {
+	zoom:1;
+	&:before, &:after {
+		content: "\0020";
+		display: block;
+		height: 0;
+		overflow: hidden;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// Search a list of lists ($haystack) for value ($needle) at the first position.
+// Returns that item in the list, or false if not found.
+// Based on breakup-list-key-search mixin by @BPScott - (https://github.com/bpscott/breakup)
+
+@function get-list-value($haystack, $needle) {
+
+    @each $haystack-item in $haystack {
+        @if $needle == nth($haystack-item, 1) {
+            @return nth($haystack-item, 2);
+        }
+    }
+
+    @return false;
+}
+
+
+// MEDIA QUERY BREAKPOINTS
+// -------------------------------------------------------
+
+// Output styles at a fixed size - set in main Sass file
+$fix-mqs: false !default;
+
+// Breakpoints media query based on Jake Archibald's Sass IE post: http://jakearchibald.github.io/sass-ie/
+//
+@mixin breakpoint($point) {
+	// Get the width of the query based on the passed $point variable
+	$width: get-list-value($breakpoints, $point);
+
+	// If we're outputting for a fixed media query set...
+	@if $fix-mqs {
+		// ...and if we should apply these rules...
+		@if $fix-mqs >= $width {
+			// ...output the content the user gave us.
+			@content;
+		}
+	}
+	@else {
+		// Otherwise, output it using a regular media query
+		@media screen and (min-width: $width) {
+			@content;
+		}
+	}
+}
+
+// Tweakpoint media querie based off @BPScott's Breakup (https://github.com/bpscott/breakup)
+//
+@mixin tweakpoint($width) {
+		@if $fix-mqs {
+		// ...and if we should apply these rules...
+		@if $fix-mqs >= $width {
+			// ...output the content the user gave us.
+			@content;
+		}
+	}
+	@else {
+		@media (min-width: #{$width}) { @content; }
+	}
+}
+
+@mixin hidpi-query() {
+	@media only screen and (-webkit-min-device-pixel-ratio: 1.3),
+	only screen and (-o-min-device-pixel-ratio: 13/10),
+	only screen and (min-resolution: 120dpi) {
+		@content;
+	}
+}
+
+$old-ie: false !default;
+
+// Custom breakpoint mixin, can pass a full media query rule here to output if needed
+// for use with max-width/multi-size queries. Pass true as second argument to output in the IE stylesheet
+@mixin custom-breakpoint($query, $output-for-ie:false) {
+	@if $old-ie and $output-for-ie {
+		@content;
+	}
+	@else {
+		@media only screen and #{$query} { @content; }
+	}
+}
+
+// Old IE mixin - from Jake Archibald's Sass IE post: http://jakearchibald.github.io/sass-ie/
+//
+@mixin old-ie {
+	// Only use this content if we're dealing with old IE
+	@if $old-ie {
+		@content;
+	}
+}
+
+// GENERAL MIXINS
+// -------------------------------------------------------
+// Rems with pixel fallback for any property
+// @author @BPScott (https://github.com/BPScott/bpscott.github.io/blob/develop/source/stylesheets/vendor/_rem.scss)
+@mixin rem($property, $px-values, $baseline-px: $base-font-size) {
+	// Convert the baseline into rems
+	$baseline-rem: $baseline-px / 1rem;
+
+	// Create an empty list that we can dump values into
+	$rem-values: ();
+	@each $value in $px-values {
+	// If the value is zero, return 0
+	$rem-values: append($rem-values, if($value == 0, $value, $value / $baseline-rem));
+	}
+
+	// Output the property's px and rem values
+	#{$property}: $px-values;
+	#{$property}: $rem-values;
+}
+
+
+@mixin respond-to($breakpoint) {
+    @media only screen and (max-width: $breakpoint + px) { @content; }
+}
+
+@mixin respond-fromTo($from, $to) {
+    @media only screen and (min-width: $from + px) and (max-width: $to + px) { @content; }
+}
+
+
+@mixin respond-from($breakpoint) {
+    @media only screen and (min-width: $breakpoint + px) { @content; }
+}
+
+
+@mixin tweak-to($breakpoint) {
+    @media only screen and (max-width: $breakpoint + px) { @content; }
+}
+
+@mixin tweak-from($breakpoint) {
+    @media only screen and (min-width: $breakpoint + px) { @content; }
+}
